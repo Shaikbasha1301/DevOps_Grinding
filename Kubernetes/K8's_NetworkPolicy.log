@@ -1,0 +1,73 @@
+Creating Pods
+
+apiVersion: v1
+kind: Pod
+metadata: 
+	name: swiggy, client, zomato, uber
+	labels:
+		app: swiggyapp, clientapp, zomatoapp, uberapp
+spec:
+	containers:
+		- name: Mycont-1
+          image: ngnix
+          ports:
+			containerPort: 80
+		
+
+
+-----------------------------------------
+
+INGRESS 
+
+ApiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+	name : ingress-App
+spec:
+	podSelector:
+	   matchLabels:
+	      app: client
+	policyTypes:	
+		- Ingress
+	ingress:
+		- from:
+			- podSelector:
+				matchLabels:
+					app: swiggy
+					
+-------------------------
+
+EGRESS
+
+
+ApiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+	name : egress-App1
+spec:
+	podSelector:
+		matchLabels:
+			app: swiggy
+	policyTypes:	
+		- Egress
+	egress:
+		- to:
+			- podSelector:
+				matchLabels:
+					app: client
+					
+					
+---------------------------
+DENY
+
+ApiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+	name : Deny-App
+spec:
+	podSelector:
+	policyTypes:
+		- Ingress
+		- Egress
+	
+	
