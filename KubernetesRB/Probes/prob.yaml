@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myprob
+spec: 
+  containers:
+    - name: mycont-1
+      image: ubuntu
+      command: ["/bin/bash", "-c", "touch /opt/rbfile; sleep 1000;"]
+
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /opt/rbfile 
+           
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        timeoutSeconds: 30  
+
