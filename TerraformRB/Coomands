@@ -1,0 +1,4 @@
+terraform init
+terraform Plan
+terraform apply --auto-approve
+terraform destroy 
