@@ -1,0 +1,3 @@
+variable "ibucket"{
+type= string
+}
