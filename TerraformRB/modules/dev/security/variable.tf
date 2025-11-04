@@ -1,0 +1,4 @@
+variable "isecu" {
+type= string
+}
+
