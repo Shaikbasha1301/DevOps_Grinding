@@ -94,6 +94,59 @@ done
 
 
 
+#! /bin/bash
+
+#to check the application is installed or not
+#if  command  -v "docker" /dev/null;
+#then
+#       echo "installed"
+#else
+#       echo "not installed"
+#fi
+
+
+##Monitoring to check memory size
+
+
+#echo "total memmory size: $(free -m | awk '/Mem/ {print $3 "MB" }')"
+
+#VOlme size
+
+#echo "total volume: $(df -h | awk '/devtmpfs/ {print $4 " out of " $2}')"
+#echo "total volume: $(df -h | grep -E '/' | awk '{print $4 " out of " $2}')"
+
+
+
+#functions
+#app(){
+#       local app_name=$1
+#       yum install "${app_name}" -y
+#}
+#app "tree"
+#app "docker"
+
+
+##Directory stroage details
+
+#echo "directory name"
+#read directory
+#echo "the $directory store: $(du -sh $directory | awk '{print $1}')"
+
+
+
+#log file to s3
+
+src=/var/log/httpd/access_log
+max_size=1000000
+if [[ $(wc -c < "$src") -gt $max_size ]];
+then
+        aws s3 cp $src s3://bucket_name
+fi
+
+
+
+
+
 
 
 
